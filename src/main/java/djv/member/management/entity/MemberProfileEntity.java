@@ -46,4 +46,7 @@ public class MemberProfileEntity {
     @Column(name = "updated_date", insertable = false, updatable = false)
     private LocalDateTime updatedDate;
 
+    @Column(name = "status", nullable = false)
+    private String status;
+
 }

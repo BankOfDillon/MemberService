@@ -1,13 +1,12 @@
 package djv.member.management.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -29,9 +28,14 @@ public class MemberEnrollmentRequest {
     public String email;
 
     @NotBlank(message = "Phone Number is required")
-
-    public Date dateOfBirth;
+    @Pattern(
+            regexp = "^\\d{10}$",
+            message = "Phone number must be exactly 10 digits"
+    )
     public String phoneNumber;
 
+    @NotNull(message = "Date of birth is required")
+    @Past(message = "Date of birth must be in the past")
+    public LocalDate dateOfBirth;
 
 }
